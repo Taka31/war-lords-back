@@ -1,13 +1,13 @@
 package com.cyrilus.warlords.data;
 
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class ServantCard {
@@ -23,8 +23,8 @@ public class ServantCard {
     @ManyToOne
     private Type type;
 
-    @OneToMany(mappedBy = "id.servant")
-    private List<ServantState> servantStates;
+    @ManyToMany
+    Set<State> states;
 
     public Integer getId() {
         return id;
@@ -74,14 +74,11 @@ public class ServantCard {
         this.type = type;
     }
 
-    public List<ServantState> getServantStates() {
-        return servantStates;
+    public Set<State> getStates() {
+        return states;
     }
 
-    public void setServantStates(List<ServantState> servantStates) {
-        this.servantStates = servantStates;
-    }
-
-    
-
+    public void setStates(Set<State> states) {
+        this.states = states;
+    } 
 }

@@ -1,12 +1,12 @@
 package com.cyrilus.warlords.data;
 
-import java.util.List;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 
 @Entity
 public class State {
@@ -14,10 +14,11 @@ public class State {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    private String name;
     private String description;
 
-    @OneToMany(mappedBy = "id.state")
-    private List<ServantState> servantStates;
+    @ManyToMany
+    Set<ServantCard> servants;
 
     public Integer getId() {
         return id;
@@ -35,20 +36,11 @@ public class State {
         this.description = description;
     }
 
-    public List<ServantState> getServantStates() {
-        return servantStates;
+    public String getName() {
+        return name;
     }
 
-    public void setServantStates(List<ServantState> servantStates) {
-        this.servantStates = servantStates;
+    public void setName(String name) {
+        this.name = name;
     }
-
-    
-
-    
-
-
-
-
-    
 }
